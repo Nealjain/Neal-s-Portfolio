@@ -9,22 +9,22 @@ const Preloader = dynamic(() => import('./preloader/index.jsx'), {
 });
 
 export function Transition({ children }) {
-  const [isLoading, setIsLoading] = useState(true); // Temporarily set to true for debugging
+  const [isLoading, setIsLoading] = useState(false); // Revert to original state
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    // Temporarily disable sessionStorage check for debugging
-    // let hasShownPreloader = false;
-    // try {
-    //   hasShownPreloader = sessionStorage.getItem('preloader-shown') === 'true';
-    // } catch (error) {
-    //   console.error('Error accessing sessionStorage:', error);
-    // }
+    // Re-enable sessionStorage check
+    let hasShownPreloader = false;
+    try {
+      hasShownPreloader = sessionStorage.getItem('preloader-shown') === 'true';
+    } catch (error) {
+      console.error('Error accessing sessionStorage:', error);
+    }
     
-    // if (!hasShownPreloader) {
-    //   setIsLoading(true);
-    // }
+    if (!hasShownPreloader) {
+      setIsLoading(true);
+    }
   }, []); // Empty dependency array ensures this only runs once on initial mount
 
   // Handle page transitions
