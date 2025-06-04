@@ -13,12 +13,20 @@ export default function Preloader({ onPreloaderFinished, pagePath }) {
   }, [onPreloaderFinished]);
 
   useEffect(() => {
-    // Temporarily force preloader to show for debugging
-    const shouldDisplayPreloader = true; // Always true for debugging
+    // Check if this is the first visit in this session
+    let hasShownPreloader = false;
+    try {
+      hasShownPreloader = sessionStorage.getItem('preloader-shown') === 'true';
+    } catch (error) {
+      console.error('Error accessing sessionStorage:', error);
+    }
+    
+    // Only show preloader on first visit to the site
+    const shouldDisplayPreloader = !hasShownPreloader;
     
     if (shouldDisplayPreloader) {
       setShouldShow(true);
-      // Mark that we've shown the preloader (optional for debugging, but good to keep consistent)
+      // Mark that we've shown the preloader
       try {
         sessionStorage.setItem('preloader-shown', 'true');
       } catch (error) {
@@ -60,8 +68,9 @@ export default function Preloader({ onPreloaderFinished, pagePath }) {
         clearTimeout(hideTimer);
       };
     } else {
-      // This block will not be reached with shouldDisplayPreloader always true
+      // If preloader should not be displayed, hide it immediately
       setShouldShow(false);
+      // Use requestAnimationFrame for smoother transition
       requestAnimationFrame(() => {
         finishPreloader();
       });
