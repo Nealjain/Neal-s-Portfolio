@@ -1,0 +1,120 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:import/recommended",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
+<<<<<<< HEAD
+=======
+  "plugins": ["import"],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@/components", "./app/_components"],
+          ["@/config", "./app/_config"],
+          ["@/data", "./app/_data"],
+          ["@/fonts", "./app/_fonts"],
+          ["@/hooks", "./app/_hooks"],
+          ["@/layout", "./app/_layout"],
+          ["@/lib", "./app/_lib"],
+          ["@/providers", "./app/_providers"],
+          ["@/utils", "./app/_utils"],
+          ["@", "./"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+>>>>>>> 66fd0888dc65591b42090e4efd57ac33b3c89493
+  "rules": {
+    "sort-imports": [
+      "error",
+      {
+<<<<<<< HEAD
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+=======
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false
+>>>>>>> 66fd0888dc65591b42090e4efd57ac33b3c89493
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+<<<<<<< HEAD
+          ["type", "object", "external", "builtin"],
+          "internal",
+          ["parent", "sibling", "index"]
+=======
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+>>>>>>> 66fd0888dc65591b42090e4efd57ac33b3c89493
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
+          {
+<<<<<<< HEAD
+            "pattern": "@/**",
+            "group": "internal"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["internal", "react"],
+=======
+            "pattern": "next/**",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react", "next"],
+>>>>>>> 66fd0888dc65591b42090e4efd57ac33b3c89493
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+<<<<<<< HEAD
+    "import/no-unresolved": [0, { "commonjs": true, "amd": true }],
+    "import/named": 2,
+    "import/namespace": 2,
+    "import/default": 2,
+    "import/export": 2,
+    "tailwindcss/no-custom-classname": "off"
+  },
+  "settings": {
+    "import/extensions": [".js", ".jsx"],
+    "import/resolver": {
+      "alias": true
+    }
+=======
+    "import/no-unresolved": "error",
+    "import/no-duplicates": "error",
+    "tailwindcss/classnames-order": "warn",
+    "tailwindcss/enforces-shorthand": "warn",
+    "tailwindcss/no-unnecessary-arbitrary-value": "warn",
+    "react/no-unescaped-entities": "warn",
+    "@next/next/no-img-element": "warn"
+>>>>>>> 66fd0888dc65591b42090e4efd57ac33b3c89493
+  }
+}
