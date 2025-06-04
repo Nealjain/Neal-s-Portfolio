@@ -1,12 +1,16 @@
 'use client';
-
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { homePreloaderWords } from '/app/_data/preloader-words';
 
 export default function Preloader({ onPreloaderFinished, pagePath }) {
   const [index, setIndex] = useState(0);
   const [shouldShow, setShouldShow] = useState(true); // Start with true to avoid flicker
+
+  // Memoize the preloader finish callback to prevent unnecessary re-renders
+  const finishPreloader = useCallback(() => {
+    if (onPreloaderFinished) onPreloaderFinished();
+  }, [onPreloaderFinished]);
 
   useEffect(() => {
     // Check if this is the first visit in this session
@@ -29,8 +33,24 @@ export default function Preloader({ onPreloaderFinished, pagePath }) {
         console.error('Error setting sessionStorage:', error);
       }
 
+      // Preload critical images in the background while showing preloader
+      const preloadImages = () => {
+        const imagesToPreload = [
+          '/images/beyound hunger.png',
+          '/images/Homepage-Design-Crazy-Egg.png',
+          '/images/1234567890.png'
+        ];
+        
+        imagesToPreload.forEach(src => {
+          const img = new Image();
+          img.src = src;
+        });
+      };
+      
+      preloadImages();
+
       const hideTimer = setTimeout(() => {
-        if (onPreloaderFinished) onPreloaderFinished();
+        finishPreloader();
       }, 3000); // show for 3 seconds
 
       let currentWordIndex = 0;
@@ -50,14 +70,12 @@ export default function Preloader({ onPreloaderFinished, pagePath }) {
     } else {
       // If preloader should not be displayed, hide it immediately
       setShouldShow(false);
-      if (onPreloaderFinished) {
-        // Use setTimeout to ensure this runs after component is mounted
-        setTimeout(() => {
-          onPreloaderFinished();
-        }, 0);
-      }
+      // Use requestAnimationFrame for smoother transition
+      requestAnimationFrame(() => {
+        finishPreloader();
+      });
     }
-  }, []); // No dependencies to ensure it only runs once
+  }, [finishPreloader]); // Only depend on the memoized callback
 
   // Don't render anything if we shouldn't show the preloader
   if (!shouldShow) return null;

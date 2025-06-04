@@ -10,6 +10,7 @@ const Preloader = dynamic(() => import('./preloader/index.jsx'), {
 
 export function Transition({ children }) {
   const [isLoading, setIsLoading] = useState(false); // Start with false to avoid showing preloader on navigation
+  const [isPageTransitioning, setIsPageTransitioning] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -27,6 +28,16 @@ export function Transition({ children }) {
     }
   }, []); // Empty dependency array ensures this only runs once on initial mount
 
+  // Handle page transitions
+  useEffect(() => {
+    setIsPageTransitioning(true);
+    // Short timeout to ensure transition is smooth
+    const timer = setTimeout(() => {
+      setIsPageTransitioning(false);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
   const handlePreloaderFinished = () => {
     setIsLoading(false);
   };
@@ -35,10 +46,17 @@ export function Transition({ children }) {
     <AnimatePresence mode="wait">
       {isLoading && <Preloader key="preloader" onPreloaderFinished={handlePreloaderFinished} pagePath={pathname} />} 
       <motion.div
+        key={pathname}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
+        animate={{ 
+          opacity: 1,
+          transition: { duration: 0.3, ease: 'easeInOut' }
+        }}
+        exit={{ 
+          opacity: 0,
+          transition: { duration: 0.2, ease: 'easeInOut' }
+        }}
+        className={isPageTransitioning ? 'pointer-events-none' : ''}
       >
         {children}
       </motion.div>

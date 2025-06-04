@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -19,8 +19,13 @@ export const ThumbnailModal = forwardRef(
   function ThumbnailModal({ variants, active, index, ...props }, ref) {
     const items = thumbnailOptions.map(({ title, image }) => {
       const id = randomId();
+      const [isLoading, setIsLoading] = useState(true);
+      
       return (
         <Center key={id} className='h-full w-full'>
+          {isLoading && (
+            <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+          )}
           <Image
             src={image}
             width={320}
@@ -30,7 +35,8 @@ export const ThumbnailModal = forwardRef(
             quality={85}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJcUdBLlwAAAABJRU5ErkJggg=="
-            className="w-[320px] h-[320px] object-cover"
+            className={`w-[320px] h-[320px] object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+            onLoadingComplete={() => setIsLoading(false)}
           />
         </Center>
       );

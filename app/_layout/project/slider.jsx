@@ -2,6 +2,7 @@
 
 import { CldVideoPlayer } from 'next-cloudinary';
 import Image from 'next/image';
+import { useState } from 'react';
 
 import { Center } from '@/components';
 
@@ -11,19 +12,27 @@ import { Center } from '@/components';
  * @param {string} props.source
  */
 export function ProjectSlider({ type, source }) {
+  const [isLoading, setIsLoading] = useState(true);
+
   const image =
     type === 'image' ? (
-      <Image
-        src={source}
-        fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-        priority
-        quality={85}
-        placeholder="blur"
-        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJcUdBLlwAAAABJRU5ErkJggg=="
-        className='object-cover'
-        alt='project items'
-      />
+      <>
+        {isLoading && (
+          <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+        )}
+        <Image
+          src={source}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          priority
+          quality={85}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJcUdBLlwAAAABJRU5ErkJggg=="
+          className={`object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+          alt='project items'
+          onLoadingComplete={() => setIsLoading(false)}
+        />
+      </>
     ) : null;
   const video =
     type === 'video' ? (
@@ -41,7 +50,7 @@ export function ProjectSlider({ type, source }) {
 
   return (
     <Center
-      className='relative w-1/4 rounded'
+      className='relative w-1/4 rounded overflow-hidden'
       style={{
         minWidth: '150px',
         height: '20vw',

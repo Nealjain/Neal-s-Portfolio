@@ -8,7 +8,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256], // Smaller image sizes
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
-    unoptimized: true, // Disable image optimization for local images
+    unoptimized: false, // Enable image optimization
     remotePatterns: [
       {
         protocol: 'https',
