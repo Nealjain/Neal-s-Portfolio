@@ -8,10 +8,6 @@ export const socialMedias = [
     title: 'Instagram',
   },
   {
-    href: 'https://www.instagram.com/its_neal___?igsh=emhmZjhtamV3aGh4&utm_source=qr',
-    title: 'Instagram Alt',
-  },
-  {
     href: 'https://www.linkedin.com/in/neal-jain-491b56239/',
     title: 'LinkedIn',
   },

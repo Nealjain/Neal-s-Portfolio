@@ -19,7 +19,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-xl font-medium mb-4">VERSION</h3>
-            <p className="text-muted-foreground">{new Date().getFullYear()} © Edition</p>
+            <p className="text-muted-foreground">2023 © Edition</p>
           </div>
           <div>
             <h3 className="text-xl font-medium mb-4">LOCAL TIME</h3>
@@ -31,7 +31,6 @@ export function Footer() {
               <Link href="https://nealjain.github.io/B.BharatKumar/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">B.BharatKumar</Link>
               <Link href="https://beyondhunger0.pythonanywhere.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">Beyond Hunger</Link>
               <Link href="https://www.instagram.com/neal_manawat_20_05/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">Instagram</Link>
-              <Link href="https://www.instagram.com/its_neal___?igsh=emhmZjhtamV3aGh4&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">Instagram Alt</Link>
               <Link href="https://www.linkedin.com/in/neal-jain-491b56239/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">LinkedIn</Link>
             </div>
           </div>

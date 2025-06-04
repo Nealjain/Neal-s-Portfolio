@@ -47,7 +47,7 @@ export function UserDetails({ transformX }) {
           <div className='absolute right-0 top-0 z-20 -translate-x-1/2 -translate-y-1/2'>
             <motion.div style={{ x: transformX }}>
               <Link href='/contact' passHref>
-                <MagneticButton variant='primary' size='lg'>
+                <MagneticButton variant='primary' size='lg' className="hover:text-black transition-colors">
                   Get in touch
                 </MagneticButton>
               </Link>
