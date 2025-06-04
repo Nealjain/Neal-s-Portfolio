@@ -40,7 +40,7 @@ export const projectOptions = {
     },
     {
       type: 'image',
-      source: '/images/me2.png',
+      source: '/images/Homepage-Design-Trivago.png',
     },
   ],
 };
