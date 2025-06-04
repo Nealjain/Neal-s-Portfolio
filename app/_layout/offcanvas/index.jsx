@@ -15,10 +15,12 @@ export function Offcanvas() {
     setOpen(false);
   }, [pathname]);
 
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <AnimatePresence mode='wait'>
-        {isOpen ? <OffcanvasBody /> : null}
+        {isOpen ? <OffcanvasBody handleClose={handleClose} /> : null}
       </AnimatePresence>
       <OffcanvasToggle isOpen={isOpen} handleOpen={setOpen} />
     </>

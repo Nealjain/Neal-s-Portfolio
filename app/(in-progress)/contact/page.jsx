@@ -63,8 +63,6 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-medium">Instagram</h3>
                   <a href="https://www.instagram.com/neal_manawat_20_05/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">@neal_manawat_20_05</a>
-                  <br />
-                  <a href="https://www.instagram.com/its_neal___?igsh=emhmZjhtamV3aGh4&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">@its_neal___</a>
                 </div>
               </div>
             </div>
