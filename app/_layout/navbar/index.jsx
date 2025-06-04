@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 
 import { NavbarBrand } from './brand';
 import { NavbarList } from './list';
+import { MobileMenu } from './mobile-menu';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -14,6 +15,7 @@ export function Navbar() {
       <div className={`flex items-center justify-between px-8 py-4 ${textColorClass}`}>
         <NavbarBrand />
         <NavbarList />
+        <MobileMenu />
       </div>
     </nav>
   );
