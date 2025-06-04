@@ -2,10 +2,8 @@ import {
   Contact,
   Description,
   Header,
-
   Project,
   Thumbnail,
-  Transition,
 } from '@/layout';
 
 /** @type {import('next').Metadata} */
@@ -17,8 +15,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <Transition>
-
+    <>
       <Header />
       <main>
         <Description />
@@ -26,6 +23,6 @@ export default function Home() {
         <Project />
       </main>
       <Contact />
-    </Transition>
+    </>
   );
 }

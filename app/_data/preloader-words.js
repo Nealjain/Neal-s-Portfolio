@@ -3,16 +3,20 @@
 // This file only exports the preloader words array
 export const homePreloaderWords = [
   'Hello',         // English
-  'Bienvenue',     // French
+  'Bonjour',       // French
   'Ciao',          // Italian
   'Olá',           // Portuguese
-  'नमस्ते',          // Hindi
-  'こんにちは',        // Japanese
-  'やあ',            // Japanese (casual)
-  '안녕하세요',         // Korean
-  '你好',            // Chinese
-  'Здравствуйте',   // Russian
-  'مرحبًا',          // Arabic
+  'नमस्ते',         // Hindi
+  'こんにちは',      // Japanese
+  'Hola',          // Spanish
+  '안녕하세요',      // Korean
+  '你好',           // Chinese (Simplified)
+  'Здравствуйте',  // Russian
+  'مرحبًا',         // Arabic
+  'Γειά σου',      // Greek
+  'สวัสดี',         // Thai
+  'Hallo',         // German
+  'שלום',          // Hebrew
 ];
 
 export const preloaderWords = [

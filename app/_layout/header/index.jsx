@@ -11,11 +11,14 @@ import { slideUp } from './variants';
 export function Header() {
   return (
     <motion.header
-      className='relative h-screen overflow-hidden bg-secondary-foreground text-background'
+      className='relative h-screen overflow-hidden bg-gray-500 text-background'
       variants={slideUp}
       initial='initial'
       animate='enter'
     >
+      {/* Grey background overlay */}
+      <div className='absolute inset-0 bg-gray-500 z-0'></div>
+      
       <Image
         src='/images/me2.png'
         className='object-cover md:scale-55 md:object-contain absolute inset-0 w-full h-full'
@@ -28,7 +31,7 @@ export function Header() {
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
       />
 
-      <div className='relative flex h-full flex-col justify-end gap-2 md:flex-col-reverse md:justify-normal'>
+      <div className='relative z-20 flex h-full flex-col justify-end gap-2 md:flex-col-reverse md:justify-normal'>
         <div className='select-none'>
           <h1 className='text-[max(9em,15vw)]'>
             <ParallaxSlider repeat={4} baseVelocity={3}>

@@ -10,7 +10,7 @@ export function Navbar() {
   const textColorClass = pathname === '/' ? 'text-white' : 'text-black';
 
   return (
-    <nav className='absolute inset-x-0 top-0 z-10'>
+    <nav className='absolute inset-x-0 top-0 z-[100]'>
       <div className={`flex items-center justify-between px-8 py-4 ${textColorClass}`}>
         <NavbarBrand />
         <NavbarList />

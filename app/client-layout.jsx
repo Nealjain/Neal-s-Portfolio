@@ -2,15 +2,18 @@
 
 import { Offcanvas } from '@/layout';
 import { Navbar } from '@/layout';
+import { Transition } from '@/layout';
 import { Providers } from '@/providers';
 
 export function ClientLayout({ children }) {
   return (
     <Providers>
       <Navbar />
-      <main className="w-full">
-        {children}
-      </main>
+      <Transition>
+        <main className="w-full">
+          {children}
+        </main>
+      </Transition>
       <Offcanvas />
     </Providers>
   );

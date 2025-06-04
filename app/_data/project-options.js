@@ -16,15 +16,15 @@ export const projectOptions = {
       type: 'image',
       source: '/images/Homepage-Design-Dropbox.png',
     },
+    {
+      type: 'image',
+      source: '/images/Homepage-Design-Healthline.png',
+    },
   ],
   second: [
     {
       type: 'image',
       source: '/images/1234567890.png',
-    },
-    {
-      type: 'image',
-      source: '/images/Homepage-Design-Healthline.png',
     },
     {
       type: 'image',
@@ -37,6 +37,10 @@ export const projectOptions = {
     {
       type: 'image',
       source: '/images/Homepage-Design-thredUP.png',
+    },
+    {
+      type: 'image',
+      source: '/images/me2.png',
     },
   ],
 };
