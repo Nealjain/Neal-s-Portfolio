@@ -9,35 +9,55 @@ export default function Preloader({ onPreloaderFinished, pagePath }) {
   const [shouldShow, setShouldShow] = useState(true); // Start with true to avoid flicker
 
   useEffect(() => {
-    // Force preloader to show by removing sessionStorage check
-    setShouldShow(true);
-    
-    // Reset the sessionStorage to ensure preloader shows
+    // Check if this is the first visit in this session
+    let hasShownPreloader = false;
     try {
-      sessionStorage.removeItem('preloader-shown');
+      hasShownPreloader = sessionStorage.getItem('preloader-shown') === 'true';
     } catch (error) {
       console.error('Error accessing sessionStorage:', error);
     }
-
-    const hideTimer = setTimeout(() => {
-      if (onPreloaderFinished) onPreloaderFinished();
-    }, 3000); // show for 3 seconds (increased from 2.5)
-
-    let currentWordIndex = 0;
-    const interval = setInterval(() => {
-      currentWordIndex++;
-      if (currentWordIndex < homePreloaderWords.length) {
-        setIndex(currentWordIndex);
-      } else {
-        clearInterval(interval);
+    
+    // Only show preloader on first visit to the site
+    const shouldDisplayPreloader = !hasShownPreloader;
+    
+    if (shouldDisplayPreloader) {
+      setShouldShow(true);
+      // Mark that we've shown the preloader
+      try {
+        sessionStorage.setItem('preloader-shown', 'true');
+      } catch (error) {
+        console.error('Error setting sessionStorage:', error);
       }
-    }, 250);
 
-    return () => {
-      clearInterval(interval);
-      clearTimeout(hideTimer);
-    };
-  }, [onPreloaderFinished]); // Removed pagePath dependency
+      const hideTimer = setTimeout(() => {
+        if (onPreloaderFinished) onPreloaderFinished();
+      }, 3000); // show for 3 seconds
+
+      let currentWordIndex = 0;
+      const interval = setInterval(() => {
+        currentWordIndex++;
+        if (currentWordIndex < homePreloaderWords.length) {
+          setIndex(currentWordIndex);
+        } else {
+          clearInterval(interval);
+        }
+      }, 250);
+
+      return () => {
+        clearInterval(interval);
+        clearTimeout(hideTimer);
+      };
+    } else {
+      // If preloader should not be displayed, hide it immediately
+      setShouldShow(false);
+      if (onPreloaderFinished) {
+        // Use setTimeout to ensure this runs after component is mounted
+        setTimeout(() => {
+          onPreloaderFinished();
+        }, 0);
+      }
+    }
+  }, []); // No dependencies to ensure it only runs once
 
   // Don't render anything if we shouldn't show the preloader
   if (!shouldShow) return null;

@@ -9,8 +9,23 @@ const Preloader = dynamic(() => import('./preloader/index.jsx'), {
 });
 
 export function Transition({ children }) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Start with false to avoid showing preloader on navigation
   const pathname = usePathname();
+
+  useEffect(() => {
+    // Check if this is the first visit in this session
+    let hasShownPreloader = false;
+    try {
+      hasShownPreloader = sessionStorage.getItem('preloader-shown') === 'true';
+    } catch (error) {
+      console.error('Error accessing sessionStorage:', error);
+    }
+    
+    // Only set loading to true if preloader hasn't been shown yet
+    if (!hasShownPreloader) {
+      setIsLoading(true);
+    }
+  }, []); // Empty dependency array ensures this only runs once on initial mount
 
   const handlePreloaderFinished = () => {
     setIsLoading(false);
