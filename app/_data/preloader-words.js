@@ -1,6 +1,6 @@
 'use client';
 
-// This file exports preloader words arrays for different pages
+// This file only exports the preloader words array
 export const homePreloaderWords = [
   'Hello',         // English
   'Bonjour',       // French
@@ -19,43 +19,6 @@ export const homePreloaderWords = [
   'שלום',          // Hebrew
 ];
 
-// About page preloader words
-export const aboutPreloaderWords = [
-  'About Me',
-  'My Story',
-  'My Journey',
-  'My Background',
-  'Who I Am',
-  'My Experience',
-  'My Education',
-  'My Skills'
-];
-
-// Work page preloader words
-export const workPreloaderWords = [
-  'My Work',
-  'Projects',
-  'Portfolio',
-  'Creations',
-  'Designs',
-  'Development',
-  'Websites',
-  'Applications'
-];
-
-// Contact page preloader words
-export const contactPreloaderWords = [
-  'Contact Me',
-  'Get In Touch',
-  'Let\'s Connect',
-  'Reach Out',
-  'Say Hello',
-  'Drop A Line',
-  'Let\'s Talk',
-  'Connect With Me'
-];
-
-// Generic loading words for all pages
 export const preloaderWords = [
   'Loading',
   'Please Wait',

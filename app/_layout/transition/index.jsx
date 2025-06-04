@@ -1,79 +1,65 @@
 'use client';
-
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 
-// Dynamically import the Preloader component
-const Preloader = dynamic(() => import('./preloader'), {
+const Preloader = dynamic(() => import('./preloader/index.jsx'), {
   ssr: false,
 });
 
-export default function Transition({ children }) {
-  const pathname = usePathname();
-  const [isLoading, setIsLoading] = useState(true);
+export function Transition({ children }) {
+  const [isLoading, setIsLoading] = useState(false); // Start with false to avoid showing preloader on navigation
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+  const pathname = usePathname();
 
-  // Handle page transitions when pathname changes
   useEffect(() => {
-    setIsPageTransitioning(true);
-    
-    // Short timeout to allow transition to complete
-    const transitionTimer = setTimeout(() => {
-      setIsPageTransitioning(false);
-    }, 800); // Match this with the duration in the motion.div
-    
-    return () => clearTimeout(transitionTimer);
-  }, [pathname]);
-
-  // Check if preloader should be shown on initial mount
-  useEffect(() => {
-    // We'll handle the preloader logic in the Preloader component
-    // This is just for initial setup
+    // Check if this is the first visit in this session
+    let hasShownPreloader = false;
     try {
-      const hasShownPreloader = sessionStorage.getItem('preloader-shown') === 'true';
-      if (hasShownPreloader) {
-        // If preloader has been shown before, don't show it again
-        setIsLoading(false);
-      }
+      hasShownPreloader = sessionStorage.getItem('preloader-shown') === 'true';
     } catch (error) {
       console.error('Error accessing sessionStorage:', error);
-      // If there's an error, just hide the preloader
-      setIsLoading(false);
     }
-  }, []);
+    
+    // Only set loading to true if preloader hasn't been shown yet
+    if (!hasShownPreloader) {
+      setIsLoading(true);
+    }
+  }, []); // Empty dependency array ensures this only runs once on initial mount
 
-  // Function to handle when preloader is finished
+  // Handle page transitions
+  useEffect(() => {
+    setIsPageTransitioning(true);
+    // Short timeout to ensure transition is smooth
+    const timer = setTimeout(() => {
+      setIsPageTransitioning(false);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
   const handlePreloaderFinished = () => {
     setIsLoading(false);
   };
 
   return (
-    <>
-      <AnimatePresence mode="wait">
-        {isLoading && (
-          <Preloader 
-            key="preloader" 
-            onPreloaderFinished={handlePreloaderFinished} 
-            pagePath={pathname} // Pass the current path to the preloader
-          />
-        )}
-      </AnimatePresence>
-
+    <AnimatePresence mode="wait">
+      {isLoading && <Preloader key="preloader" onPreloaderFinished={handlePreloaderFinished} pagePath={pathname} />} 
       <motion.div
         key={pathname}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ 
-          duration: 0.5, 
-          ease: [0.22, 1, 0.36, 1] 
+        animate={{ 
+          opacity: 1,
+          transition: { duration: 0.3, ease: 'easeInOut' }
         }}
-        className={`${isPageTransitioning ? 'pointer-events-none' : ''}`}
+        exit={{ 
+          opacity: 0,
+          transition: { duration: 0.2, ease: 'easeInOut' }
+        }}
+        className={isPageTransitioning ? 'pointer-events-none' : ''}
       >
         {children}
       </motion.div>
-    </>
+    </AnimatePresence>
   );
 }
