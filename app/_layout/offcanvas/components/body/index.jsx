@@ -24,13 +24,13 @@ export function OffcanvasBody({ handleClose }) {
       {/* Content container with responsive width */}
       <div className='absolute right-0 top-0 h-screen w-full bg-foreground text-background overflow-y-auto md:w-2/3 lg:w-1/2'>
         <div className='flex h-full flex-col justify-between p-6 sm:p-12 md:p-16 lg:p-24'>
-          {/* Close button - Made larger and more prominent */}
-          <div className='fixed top-6 right-6 z-[600]'>
+          {/* Compact close button */}
+          <div className='fixed top-4 right-4 z-[600]'>
             <MagneticButton 
               onClick={handleClose} 
-              className='text-white bg-black p-3 rounded-full shadow-lg hover:bg-gray-800 transition-colors'
+              className='text-white bg-black p-2 rounded-full shadow-md hover:bg-gray-800 transition-colors'
             >
-              <X size={32} strokeWidth={2} />
+              <X size={20} strokeWidth={2.5} />
             </MagneticButton>
           </div>
           <OffcanvasLinks />
