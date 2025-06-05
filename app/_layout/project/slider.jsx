@@ -16,7 +16,7 @@ export function ProjectSlider({ type, source }) {
 
   const image =
     type === 'image' ? (
-      <>
+      <div className="relative w-full h-full">
         {isLoading && (
           <div className="absolute inset-0 bg-gray-200 animate-pulse" />
         )}
@@ -32,8 +32,9 @@ export function ProjectSlider({ type, source }) {
           alt='project items'
           onLoad={() => setIsLoading(false)}
         />
-      </>
+      </div>
     ) : null;
+
   const video =
     type === 'video' ? (
       <CldVideoPlayer
@@ -50,11 +51,11 @@ export function ProjectSlider({ type, source }) {
 
   return (
     <Center
-      className='relative w-2/3 rounded overflow-hidden'
+      className='relative w-2/3 overflow-hidden rounded'
       style={{
         minWidth: '400px',
-        height: '35vw',
-        maxHeight: '600px',
+        height: '25vw',
+        maxHeight: '400px',
         maxWidth: '100vw'
       }}
     >
