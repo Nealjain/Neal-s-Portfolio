@@ -9,8 +9,8 @@ export function useProjectSlider(element) {
     offset: ['start end', 'end start'],
   });
 
-  const transformX1 = useTransform(scrollYProgress, [0, 1], [0, -250]);
-  const transformX2 = useTransform(scrollYProgress, [0, 1], [-250, 0]);
+  const transformX1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const transformX2 = useTransform(scrollYProgress, [0, 1], [-200, 0]);
   const transformY = useTransform(scrollYProgress, [0, 0.9], [250, 0]);
 
   return { transformX1, transformX2, transformY };
