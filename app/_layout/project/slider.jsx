@@ -53,9 +53,9 @@ export function ProjectSlider({ type, source }) {
     <Center
       className='relative w-2/3 overflow-hidden rounded'
       style={{
-        minWidth: '400px',
-        height: '25vw',
-        maxHeight: '400px',
+        minWidth: '350px',
+        height: '20vw',
+        maxHeight: '300px',
         maxWidth: '100vw'
       }}
     >

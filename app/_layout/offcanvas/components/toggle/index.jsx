@@ -39,11 +39,11 @@ export function OffcanvasToggle({ isOpen, handleOpen }) {
       <MagneticButton
         size='sm'
         variant='ghost'
-        className='lg:border-0 md:border-0 sm:border-0'
+        className='border-0 p-0'
         onClick={() => handleOpen(!isOpen)}
       >
         <span
-          className={cn([classes.burger], [isOpen && classes.burgerActive])}
+          className={cn(classes.burger, {[classes.active]: isOpen})}
         />
         <span className='sr-only focus:not-sr-only'>Offcanvas Toggle</span>
       </MagneticButton>
