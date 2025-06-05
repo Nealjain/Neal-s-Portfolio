@@ -69,19 +69,26 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
   }
   html {
     overflow-x: hidden;
     overflow-y: auto;
     /* Hide scrollbar for Firefox */
     scrollbar-width: none;
+    height: 100%;
   }
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
-    overflow-y: auto; /* Changed from hidden to auto to enable scrolling */
+    overflow-y: auto;
     /* Hide scrollbar for Firefox */
     scrollbar-width: none;
+    min-height: 100%;
+    position: relative;
+    touch-action: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 

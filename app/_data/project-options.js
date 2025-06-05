@@ -2,10 +2,6 @@ export const projectOptions = {
   first: [
     {
       type: 'image',
-      source: '/images/beyound hunger.png',
-    },
-    {
-      type: 'image',
       source: '/images/Homepage-Design-Crazy-Egg.png',
     },
     {
@@ -20,12 +16,12 @@ export const projectOptions = {
       type: 'image',
       source: '/images/Homepage-Design-Healthline.png',
     },
-  ],
-  second: [
     {
       type: 'image',
-      source: '/images/1234567890.png',
+      source: '/images/Homepage-Design-Abacus-Plumbing.png',
     },
+  ],
+  second: [
     {
       type: 'image',
       source: '/images/Homepage-Design-Slack.png',
@@ -41,6 +37,10 @@ export const projectOptions = {
     {
       type: 'image',
       source: '/images/Homepage-Design-Trivago.png',
+    },
+    {
+      type: 'image',
+      source: '/images/Homepage-Design-Slack.png',
     },
   ],
 };

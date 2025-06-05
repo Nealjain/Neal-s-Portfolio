@@ -55,7 +55,7 @@ export function Transition({ children }) {
           opacity: 0,
           transition: { duration: 0.2, ease: 'easeInOut' }
         }}
-        className={isPageTransitioning ? 'pointer-events-none' : ''}
+        className={`w-full ${isPageTransitioning ? 'pointer-events-none' : ''}`}
       >
         {children}
       </motion.div>

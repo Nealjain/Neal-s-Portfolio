@@ -31,7 +31,7 @@ export function Project() {
       <div className='grid items-center overflow-hidden'>
         <div className='bg-background'>
           <motion.div
-            className='mb-10 flex gap-10'
+            className='mb-10 flex gap-6'
             style={{
               x: transformX1,
             }}
@@ -40,7 +40,7 @@ export function Project() {
           </motion.div>
 
           <motion.div
-            className='mb-10 flex gap-10'
+            className='mb-10 flex gap-6'
             style={{
               x: transformX2,
             }}

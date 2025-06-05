@@ -22,7 +22,7 @@ export function OffcanvasBody({ handleClose }) {
       exit='exit'
     >
       {/* Content container with responsive width */}
-      <div className='absolute right-0 top-0 h-screen w-full bg-foreground text-background overflow-y-auto md:w-2/3 lg:w-1/2'>
+      <div className='absolute right-0 top-0 h-screen w-full bg-foreground text-background overflow-y-auto md:w-2/3 lg:w-1/2' style={{ WebkitOverflowScrolling: 'touch' }}>
         <div className='flex h-full flex-col justify-between p-6 sm:p-12 md:p-16 lg:p-24'>
           {/* Compact close button */}
           <div className='fixed top-4 right-4 z-[600]'>

@@ -37,7 +37,7 @@ export function OffcanvasToggle({ isOpen, handleOpen }) {
       animate={{ opacity: showToggle ? 1 : 0, x: showToggle ? 0 : 100 }}
     >
       <MagneticButton
-        size='md'
+        size='sm'
         variant='ghost'
         className='lg:border-0 md:border-0 sm:border-0'
         onClick={() => handleOpen(!isOpen)}

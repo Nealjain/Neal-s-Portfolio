@@ -36,7 +36,7 @@ export const ThumbnailModal = forwardRef(
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJcUdBLlwAAAABJRU5ErkJggg=="
             className={`w-[320px] h-[320px] object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-            onLoadingComplete={() => setIsLoading(false)}
+            onLoad={() => setIsLoading(false)}
           />
         </Center>
       );

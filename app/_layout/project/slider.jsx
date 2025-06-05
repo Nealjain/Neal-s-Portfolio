@@ -30,7 +30,7 @@ export function ProjectSlider({ type, source }) {
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJcUdBLlwAAAABJRU5ErkJggg=="
           className={`object-cover transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
           alt='project items'
-          onLoadingComplete={() => setIsLoading(false)}
+          onLoad={() => setIsLoading(false)}
         />
       </>
     ) : null;
@@ -50,10 +50,10 @@ export function ProjectSlider({ type, source }) {
 
   return (
     <Center
-      className='relative w-1/4 rounded overflow-hidden'
+      className='relative w-1/3 rounded overflow-hidden'
       style={{
-        minWidth: '150px',
-        height: '20vw',
+        minWidth: '250px',
+        height: '25vw',
       }}
     >
       {image}

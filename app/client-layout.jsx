@@ -8,13 +8,15 @@ import { Providers } from '@/providers';
 export function ClientLayout({ children }) {
   return (
     <Providers>
-      <Navbar />
-      <Transition>
-        <main className="w-full">
-          {children}
-        </main>
-      </Transition>
-      <Offcanvas />
+      <div className="min-h-screen flex flex-col relative">
+        <Navbar />
+        <Transition>
+          <main className="w-full flex-grow relative z-0">
+            {children}
+          </main>
+        </Transition>
+        <Offcanvas />
+      </div>
     </Providers>
   );
 }
